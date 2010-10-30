@@ -58,6 +58,32 @@ def insert(item):
     item_relational(id, item)
 
 if __name__ == "__main__":
+    DB.cursor().execute("""DROP TABLE IF EXISTS `Item`;
+CREATE TABLE `Item` (
+  `itemid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ownerid` int(10) unsigned NOT NULL,
+  `type` char(64) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=MyISAM AUTO_INCREMENT=622061 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `ItemDetails`;
+CREATE TABLE `ItemDetails` (
+  `itemid` int(10) unsigned NOT NULL,
+  `predicate` varchar(64) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  KEY `pred` (`predicate`),
+  KEY `val` (`value`),
+  KEY `time` (`timestamp`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 PACK_KEYS=1;
+
+DROP TABLE IF EXISTS `Owner`;
+CREATE TABLE `Owner` (
+  `OwnerID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) NOT NULL,
+  `Description` varchar(1024) NOT NULL,
+  PRIMARY KEY (`OwnerID`)
+) ENGINE=MyISAM AUTO_INCREMENT=170138 DEFAULT CHARSET=latin1;""")
     from itemtypes import TYPES
     map =    {'words': 'VARCHAR(255)',
               'string': 'VARCHAR(255)',
