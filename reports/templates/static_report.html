@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load custom %}
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-GB">
+    <head>
+        <title>Static Report</title>
+    </head>
+    <body>
+        <h1>Static Report Generation</h1>
+        <h2>Item Owners Used</h2>
+        <ul>
+            {% for name in names.values %}
+            <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Data Hierarchy</h2>
+        <ul>
+            {% for owner in data %}
+            <li><h3>{{ names|get:owner }}</h3>
+                {% for item in data|get:owner %}
+                <h3>Item: {{ data|get:owner|get:item|get:"Name" }}</h3>
+                <table>
+                    {% for key in data|get:owner|get:item %}
+                    <tr><th>{{ key }}</th><td>{{ data|get:owner|get:item|get:key }}</td></tr>
+                    {% endfor %}
+                </table>
+                {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+        <pre>{{ data }}</pre>
+    </body>
+</html>
