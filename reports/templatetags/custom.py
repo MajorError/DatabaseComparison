@@ -16,3 +16,4 @@ def get(value, key):
         return value[int(key)]
     else:
         return settings.TEMPLATE_STRING_IF_INVALID
+    

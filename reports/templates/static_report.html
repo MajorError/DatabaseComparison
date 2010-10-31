@@ -12,30 +12,32 @@
             <li>{{ name }}</li>
             {% endfor %}
         </ul>
-        <h2>Data Hierarchy</h2>
+        <h2>Data By Type</h2>
         <ul>
             {% for owner in data %}
             <li><h3>{{ names|get:owner }}</h3>
-                {% for item in data|get:owner %}
-                {% with data|get:owner|get:item|get:"TYPE" as type %}
-                <h3>Item: {{ data|get:owner|get:item|get:"Name" }} (<em>{{ type }}</em>)</h3>
+                {% for type in types %}
+                <h4>Type: {{ type }}</h4>
                 <table>
                     <tr>
                     {% for key in types|get:type %}
                         <th>{{ key }}</th>
                     {% endfor %}
                     </tr>
+                    
+                    {% for item in data|get:owner %}
+                    {% ifequal data|get:owner|get:item|get:"TYPE" type %}
                     <tr>
                     {% for key in types|get:type %}
                         <td>{{ data|get:owner|get:item|get:key }}</td>
                     {% endfor %}
                     </tr>
+                    {% endifequal %}
+                    {% endfor %}
                 </table>
-                {% endwith %}
                 {% endfor %}
             </li>
             {% endfor %}
         </ul>
-        <pre>{{ data }}</pre>
     </body>
 </html>
