@@ -1,5 +1,6 @@
 from django.views.generic.simple import *
 from dbquery import *
+from itemtypes import get_type_keys
 
 __author__="majorerror"
 __date__ ="$31-Oct-2010 17:37:05$"
@@ -15,5 +16,6 @@ def static_init(request):
     return direct_to_template(request, 'static_report.html',
             {'owners': owners,
              'names' : names,
+             'types': get_type_keys(),
              'data': data
             })

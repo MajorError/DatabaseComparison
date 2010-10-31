@@ -17,12 +17,21 @@
             {% for owner in data %}
             <li><h3>{{ names|get:owner }}</h3>
                 {% for item in data|get:owner %}
-                <h3>Item: {{ data|get:owner|get:item|get:"Name" }}</h3>
+                {% with data|get:owner|get:item|get:"TYPE" as type %}
+                <h3>Item: {{ data|get:owner|get:item|get:"Name" }} (<em>{{ type }}</em>)</h3>
                 <table>
-                    {% for key in data|get:owner|get:item %}
-                    <tr><th>{{ key }}</th><td>{{ data|get:owner|get:item|get:key }}</td></tr>
+                    <tr>
+                    {% for key in types|get:type %}
+                        <th>{{ key }}</th>
                     {% endfor %}
+                    </tr>
+                    <tr>
+                    {% for key in types|get:type %}
+                        <td>{{ data|get:owner|get:item|get:key }}</td>
+                    {% endfor %}
+                    </tr>
                 </table>
+                {% endwith %}
                 {% endfor %}
             </li>
             {% endfor %}

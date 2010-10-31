@@ -35,3 +35,6 @@ TYPES = {'Pinatubo' : { 'TimeStamp' : 'datetime',
                         'Spoo3' : 'float',
                         'Spoo4' : 'words'}
         }
+
+def get_type_keys():
+    return dict([(type, sorted(TYPES[type].keys())) for type in TYPES])
