@@ -11,13 +11,13 @@ import datetime
 from decimal import Decimal
 
 if __name__ == "__main__":
+    for x in generate(1000000):
+        insert(x)
+    #print '>> 3store:\t\t%s' % Timer('from __main__ import *; get_data_3store(%s)' % owners).repeat(5, 100)
+    #print '>> relational:\t%s' % Timer('from __main__ import *; get_data_rel(%s)' % owners).repeat(5, 100)
     owners = choose_owners()
     d1 = get_data_3store(owners)
     d2 = get_data_rel(owners)
-    #print '>> 3store:\t\t%s' % Timer('from __main__ import *; get_data_3store(%s)' % owners).repeat(5, 100)
-    #print '>> relational:\t%s' % Timer('from __main__ import *; get_data_rel(%s)' % owners).repeat(5, 100)
-    #for x in generate(1000000):
-    #    insert(x)
     print 'D1.keys - D2.keys: %s' % (set(d1.keys()) - set(d2.keys()))
     print 'D2.keys - D1.keys: %s' % (set(d2.keys()) - set(d1.keys()))
     for owner in d1:

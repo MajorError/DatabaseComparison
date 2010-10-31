@@ -90,7 +90,7 @@ CREATE TABLE `Owner` (
               'hex': 'VARCHAR(64)',
               'datetime': 'TIMESTAMP',
               'number': 'INT',
-              'float': 'DECIMAL(20,20)',
+              'float': 'DECIMAL(65,20)',
               'bool': 'BOOL'
              }
     for t in TYPES:

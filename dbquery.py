@@ -53,6 +53,6 @@ def get_data_rel(owners):
             ownerid = row[1]
             if not str(ownerid) in data:
                 data[str(ownerid)] = {}
-            data[str(ownerid)][str(itemid)] = dict([(keys[i], row[i + 2]) for i in xrange(0, len(keys) - 1)])
+            data[str(ownerid)][str(itemid)] = dict([(keys[i], row[i + 2]) for i in xrange(0, len(keys))])
             data[str(ownerid)][str(itemid)]['TYPE'] = type
     return data
